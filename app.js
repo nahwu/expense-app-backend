@@ -2,7 +2,6 @@
 
 // MongoDB
 const mongoConnect = require("./util/mongodb-database").mongoConnect;
-//const getMongoDb = require("./util/mongodb-database").getMongoDb;
 
 const path = require("path");
 

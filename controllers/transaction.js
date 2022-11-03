@@ -12,7 +12,7 @@ exports.getTransactionsByItem = (req, res, next) => {
   });
 };
 
-exports.getTransactionsConditionalFilters = (req, res, next) => {
+exports.getTransactionsOptionalFilters = (req, res, next) => {
   // Case Sensitivity. Default: no case sensitivity. Set value to '' to apply.
   let caseSensitivity = "i";
   if (req.body.caseSensitive && req.body.caseSensitive === true) {
@@ -30,7 +30,7 @@ exports.getTransactionsConditionalFilters = (req, res, next) => {
   req.body.receiver ? (searchFilters.receiver = req.body.receiver) : "";
   req.body.amount ? (searchFilters.amount = req.body.amount) : "";
   req.body.imageUrl ? (searchFilters.imageUrl = req.body.imageUrl) : "";
-  // Allow both partial match or exact match. Default is partial match 
+  // Allow both partial match or exact match. Default is partial match
   //        Add in ^ for start_with
   //        Add in $ for end_with
   //        Cover with both for exact match. Example:  "^searchterm$"
@@ -54,7 +54,25 @@ exports.getTransactionsConditionalFilters = (req, res, next) => {
   let page = req.body.page ? req.body.page * 10 : 0;
   console.log("Page: ", page);
 
-  Transaction.findByConditionalFilters(searchFilters, sortBy).then(
+  Transaction.findByOptionalFilters(searchFilters, sortBy).then(
+    (transactions) => {
+      res.json(transactions);
+    }
+  );
+};
+
+exports.getTransactionsAggCountGroupBy = (req, res, next) => {
+  // Optional Date Filters
+  let startDate = new Date("0000-00-00");
+  let endDate = new Date("9999-12-31");
+  if (req.body.startDate && new Date(req.body.startDate)) {
+    startDate = new Date(req.body.startDate);
+  }
+  if (req.body.endDate && new Date(req.body.endDate)) {
+    endDate = new Date(req.body.endDate);
+  }
+
+  Transaction.getTransactionsAggCountGroupBy(req.body.item, startDate, endDate).then(
     (transactions) => {
       res.json(transactions);
     }
