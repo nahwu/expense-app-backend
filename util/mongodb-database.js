@@ -8,7 +8,7 @@ const mongoConnect = (callback) => {
   MongoClient.connect("mongodb://root:password@127.0.0.1:27017")
     .then((client) => {
       console.log("Connected to MongoDB database!");
-      _db = client.db();
+      _db = client.db("nahwu");
       callback();
     })
     .catch((err) => {

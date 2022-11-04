@@ -1,3 +1,4 @@
+# Read Me
 ## 1. Introduction
 This repository is meant for a Backend application for an expense tracker application.
 
@@ -40,7 +41,7 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. Properly do Swagger documentation (OpenAPI 3)
 
 
-## X. OPTIONAL - Developers only
+# X. OPTIONAL - Developers only
 
 ### X1. To run NodeJS application
 ```sh

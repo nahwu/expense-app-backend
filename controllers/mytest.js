@@ -21,6 +21,7 @@ exports.writeManyTestData = (req, res, next) => {
 
   const writeSize = parseInt(req.body.writeSize);
 
+  /*
   newTransaction
     .writeManyTestData(writeSize)
     .then((result) => {
@@ -30,10 +31,14 @@ exports.writeManyTestData = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+*/
 
-  /*
-  MyTest.writeManyTestData().then((result) => {
-    res.json(result);
-  });
-  */
+  MyTest.writeManyTestData2(writeSize)
+    .then((result) => {
+      res.setHeader("Content-Type", "text/plain");
+      res.send("Inserted " + result + " rows into database.");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
