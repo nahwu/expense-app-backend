@@ -1,7 +1,11 @@
 const Transaction = require("../models/transaction");
 
 exports.getAllTransactions = (req, res, next) => {
-  Transaction.fetchAll().then((transactions) => {
+  let maxPageSize;
+  parseInt(req.body.pageSize)
+    ? (maxPageSize = parseInt(req.body.pageSize))
+    : (maxPageSize = 500);
+  Transaction.fetchAll(maxPageSize).then((transactions) => {
     res.json(transactions);
   });
 };
@@ -26,7 +30,7 @@ exports.getTransactionsOptionalFilters = (req, res, next) => {
   req.body.item ? (searchFilters.item = req.body.item) : "";
   req.body.date ? (searchFilters.date = req.body.date) : "";
   req.body.category ? (searchFilters.category = req.body.category) : "";
-  req.body.payee ? (searchFilters.payee = req.body.payee) : "";
+  req.body.payer ? (searchFilters.payer = req.body.payer) : "";
   req.body.receiver ? (searchFilters.receiver = req.body.receiver) : "";
   req.body.amount ? (searchFilters.amount = req.body.amount) : "";
   req.body.imageUrl ? (searchFilters.imageUrl = req.body.imageUrl) : "";
@@ -54,7 +58,12 @@ exports.getTransactionsOptionalFilters = (req, res, next) => {
   let page = req.body.page ? req.body.page * 10 : 0;
   console.log("Page: ", page);
 
-  Transaction.findByOptionalFilters(searchFilters, sortBy).then(
+  let maxPageSize;
+  parseInt(req.body.pageSize)
+    ? (maxPageSize = parseInt(req.body.pageSize))
+    : (maxPageSize = 500);
+
+  Transaction.findByOptionalFilters(searchFilters, sortBy, maxPageSize).then(
     (transactions) => {
       res.json(transactions);
     }
@@ -72,11 +81,13 @@ exports.getTransactionsAggCountGroupBy = (req, res, next) => {
     endDate = new Date(req.body.endDate);
   }
 
-  Transaction.getTransactionsAggCountGroupBy(req.body.item, startDate, endDate).then(
-    (transactions) => {
-      res.json(transactions);
-    }
-  );
+  Transaction.getTransactionsAggCountGroupBy(
+    req.body.item,
+    startDate,
+    endDate
+  ).then((transactions) => {
+    res.json(transactions);
+  });
 };
 
 exports.postAddTransaction = (req, res, next) => {

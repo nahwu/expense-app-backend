@@ -27,11 +27,12 @@ class Transaction {
   }
 
   // TODO - Require pagination
-  static fetchAll() {
+  static fetchAll(maxResultSize) {
     const mongoDb = getMongoDb();
     return mongoDb
       .collection("transaction")
       .find()
+      .limit(maxResultSize)
       .toArray()
       .then((transactions) => {
         return transactions;
@@ -57,12 +58,13 @@ class Transaction {
   }
 
   // TODO - Require pagination
-  static findByOptionalFilters(searchFilters, sortBy) {
+  static findByOptionalFilters(searchFilters, sortBy, maxResultSize) {
     const mongoDb = getMongoDb();
     return mongoDb
       .collection("transaction")
       .find(searchFilters)
       .sort(sortBy)
+      .limit(maxResultSize)
       .toArray()
       .then((transactions) => {
         return transactions;

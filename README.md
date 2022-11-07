@@ -27,11 +27,14 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. **Feature:** Add support for edit Transaction API
 1. **Feature:** Add support for aggregation Transaction API (for descriptive analytics e.g. charts)
 1. **Feature:** Add support for list, create, edit, delete Expense Category API
+1. **Feature:** Add support for income
+1. **Feature:** Add support for list, create, edit, delete Expense Payer API
+1. **Feature:** Add support for list, create, edit, delete Expense Receiver API
 1. Add in dockerfile for this application
 1. Add in docker compose file to include MongoDB deployment
 1. **Feature:** Allow data import from CSV file
+    1. Flexible field-name remapping for data import/export
 1. **Feature:** Allow data export to CSV file
-1. Flexible field-name remapping for data import/export
 1. Add in pagination (page + page size) for results
 1. **Feature:** Investment tracking
 1. **Feature:** Account login
