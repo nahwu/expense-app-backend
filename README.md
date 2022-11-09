@@ -20,6 +20,7 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. API for creating new transaction
 1. API for retrieving all transactions
 1. API for dynamic transaction search support (optional search filters, sort, sort direction, partial match, case sensitivity)
+1. Added in dockerfile for this application
 
 
 ## 4. Development Roadmap
@@ -30,7 +31,6 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. **Feature:** Add support for income
 1. **Feature:** Add support for list, create, edit, delete Expense Payer API
 1. **Feature:** Add support for list, create, edit, delete Expense Receiver API
-1. Add in dockerfile for this application
 1. Add in docker compose file to include MongoDB deployment
 1. **Feature:** Allow data import from CSV file
     1. Flexible field-name remapping for data import/export
@@ -42,6 +42,7 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. **Feature:** Multi accounts visibility for family sharing
 1. **Feature:** Upload and attach image to expense
 1. Properly do Swagger documentation (OpenAPI 3)
+1. Do different env (1 for dev. 1 for production)
 
 
 # X. OPTIONAL - Developers only
@@ -51,7 +52,18 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 node app.js
 ```
 
-### X2. Redo dependencies (package.json)
+### X2. Build, push, export Docker image
+```sh
+docker build . -t nahwu2/expense-app-backend:0.1
+
+docker push nahwu2/expense-app-backend:0.1
+
+docker save nahwu2/expense-app-backend:0.1 | gzip > exported_expense_app_backend_0_1.tar.gz
+
+docker save mongo:6.0.2 | gzip > exported_mongo_6_0_2.tar.gz
+```
+
+### X3. Redo dependencies (package.json)
 1. (Optional) Delete package.json and package-lock.json
 2. Swagger UI Express
 ```sh

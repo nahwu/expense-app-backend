@@ -13,7 +13,7 @@ const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
-const hostname = "nahwu.synology.me";
+const hostname = "0.0.0.0";
 const port = 8080;
 
 app.use(bodyParser.json()); // Parse request body

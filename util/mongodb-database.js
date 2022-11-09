@@ -5,7 +5,7 @@ const MongoClient = mongodb.MongoClient;
 let _db;
 
 const mongoConnect = (callback) => {
-  MongoClient.connect("mongodb://root:password@127.0.0.1:27017")
+  MongoClient.connect("mongodb://root:password@nahwu.synology.me:27017")
     .then((client) => {
       console.log("Connected to MongoDB database!");
       _db = client.db("nahwu");
