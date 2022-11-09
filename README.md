@@ -6,8 +6,10 @@ This repository is meant for a Backend application for an expense tracker applic
 
 ## 2. Purpose
 While there are many expense trackers out there. The good ones are mostly behind a paywall. 
+
 There is also the 
 **Knowledge** of your own expenses is very crucial to our personal financial health for both the present and the future.
+
 It only takes 20 average medium-sized spending (e.g. $50) within a month to reach 4 figure expense (>= $1000) for the month.
 It's not uncommon to know someone who spends beyond their means, especially when one suddenly have more income than before. 
 
@@ -43,6 +45,8 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. **Feature:** Upload and attach image to expense
 1. Properly do Swagger documentation (OpenAPI 3)
 1. Do different env (1 for dev. 1 for production)
+1. Add in DB fields for dateCreated, userCreated
+    1. Sort by date DESC, then date_created DESC. to ensure that the newest date stays at the top
 
 
 # X. OPTIONAL - Developers only
@@ -59,8 +63,6 @@ docker build . -t nahwu2/expense-app-backend:0.1
 docker push nahwu2/expense-app-backend:0.1
 
 docker save nahwu2/expense-app-backend:0.1 | gzip > exported_expense_app_backend_0_1.tar.gz
-
-docker save mongo:6.0.2 | gzip > exported_mongo_6_0_2.tar.gz
 ```
 
 ### X3. Redo dependencies (package.json)
