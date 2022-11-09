@@ -7,16 +7,19 @@ const path = require("path");
 
 // APIs
 const express = require("express");
+const cors = require('cors')
 const bodyParser = require("body-parser");
 const app = express();
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
-const hostname = "127.0.0.1";
+const hostname = "nahwu.synology.me";
 const port = 8080;
 
 app.use(bodyParser.json()); // Parse request body
 app.use(express.static(path.join(__dirname, "public"))); // TODO - Learn purpose
+
+app.use(cors()) // Enable CORS
 
 const transactionRoutes = require("./routes/transaction");
 
