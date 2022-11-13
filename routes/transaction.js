@@ -18,6 +18,7 @@ router.post("/transactions", transactionController.postAddTransaction);
 // TODO - EDIT API
 
 // TODO - DELETE API
+router.delete("/transactions", transactionController.deleteTransactionById);
 
 // For Load testing only
 router.post("/test/insert-massive-data", testController.writeManyTestData);

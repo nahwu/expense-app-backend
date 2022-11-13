@@ -1,5 +1,6 @@
 // projection method can be used to select only desired fields in the response from DB. Link: https://www.w3schools.com/nodejs/nodejs_mongodb_find.asp
 
+const mongodb = require("mongodb");
 const getMongoDb = require("../util/mongodb-database").getMongoDb;
 
 class Transaction {
@@ -77,7 +78,7 @@ class Transaction {
   /** Count - Group by features
    * 1. Category
    * 2. TODO - Month
-   */  
+   */
   static getTransactionsAggCountGroupBy(searchTerm, startDate, endDate) {
     const mongoDb = getMongoDb();
     const transactionCollection = mongoDb.collection("transaction");
@@ -116,6 +117,30 @@ class Transaction {
         console.log(err);
       });
     */
+  }
+
+  static deleteTransactionById(transactionIds) {
+    const mongoDb = getMongoDb();
+    return (
+      mongoDb
+        .collection("transaction")
+        //.deleteOne({ _id: new mongodb.ObjectId(transactionId) })
+        .deleteMany({
+          _id: {
+            $in: transactionIds.map(
+              (_transactionId) => new mongodb.ObjectId(_transactionId)
+            ),
+          },
+        })
+        .then((result) => {
+          console.log("Deletion result:", result);
+          console.log("Deleted transaction:", transactionIds);
+          return result;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
   }
 }
 

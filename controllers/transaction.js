@@ -120,3 +120,9 @@ exports.postAddTransaction = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.deleteTransactionById = (req, res, next) => {
+  Transaction.deleteTransactionById(req.body.listOfId).then((result) => {
+    res.json(result); // TODO - Reply "Deleted" OR "Not found"
+  });
+};

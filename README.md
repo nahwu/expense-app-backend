@@ -19,14 +19,14 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 ## 3. Supported features
 1. Expenses info - Date, item description, expense category, payer, receiver, amount
 1. Connection to MongoDB
-1. API for creating new transaction
-1. API for retrieving all transactions
-1. API for dynamic transaction search support (optional search filters, sort, sort direction, partial match, case sensitivity)
+1. **Feature:** API for creating new transaction
+1. **Feature:** API for retrieving all transactions
+1. **Feature:** API for dynamic transaction search support (optional search filters, sort, sort direction, partial match, case sensitivity)
+1. **Feature:** Add support for delete Transaction API
 1. Added in dockerfile for this application
 
 
 ## 4. Development Roadmap
-1. **Feature:** Add support for delete Transaction API
 1. **Feature:** Add support for edit Transaction API
 1. **Feature:** Add support for aggregation Transaction API (for descriptive analytics e.g. charts)
 1. **Feature:** Add support for list, create, edit, delete Expense Category API
