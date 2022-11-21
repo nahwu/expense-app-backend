@@ -142,6 +142,26 @@ class Transaction {
         })
     );
   }
+
+  static addTransactionByCsv(insertionDataArray, csvRowsFound) {
+    // Save all data to database
+    const mongoDb = getMongoDb();
+    return mongoDb
+      .collection("transaction")
+      .insertMany(insertionDataArray)
+      .then((result) => {
+        console.log(
+          new Date().toISOString(),
+          "- Completed",
+          csvRowsFound,
+          "CSV to Database insertions."
+        );
+        return csvRowsFound;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 module.exports = Transaction;

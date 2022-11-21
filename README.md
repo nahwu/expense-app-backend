@@ -23,6 +23,8 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. **Feature:** API for retrieving all transactions
 1. **Feature:** API for dynamic transaction search support (optional search filters, sort, sort direction, partial match, case sensitivity)
 1. **Feature:** Add support for delete Transaction API
+1. **Feature:** Allow data import from CSV file
+    1. CSV import from You Need a Budget (YNAB). Delete columns - Flag, Check Number, Cleared
 1. Added in dockerfile for this application
 
 
@@ -36,6 +38,7 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. Add in docker compose file to include MongoDB deployment
 1. **Feature:** Allow data import from CSV file
     1. Flexible field-name remapping for data import/export
+    1. Allow CSV file upload via multipart request
 1. **Feature:** Allow data export to CSV file
 1. Add in pagination (page + page size) for results
 1. **Feature:** Investment tracking
@@ -74,4 +77,8 @@ npm install swagger-ui-express -S
 3. MongoDB dependency
 ```sh
 npm install --save mongodb
+```
+4. csv dependency
+```sh
+npm install --save csv
 ```

@@ -3,6 +3,7 @@
 const express = require("express");
 
 const transactionController = require("../controllers/transaction");
+const csvController = require("../controllers/csvImport");
 const testController = require("../controllers/mytest");
 
 const router = express.Router();
@@ -19,6 +20,9 @@ router.post("/transactions", transactionController.postAddTransaction);
 
 // TODO - DELETE API
 router.delete("/transactions", transactionController.deleteTransactionById);
+
+// Import CSV
+router.post("/transactions/import/csv", csvController.addTransactionByCsv);
 
 // For Load testing only
 router.post("/test/insert-massive-data", testController.writeManyTestData);
