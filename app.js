@@ -7,7 +7,7 @@ const path = require("path");
 
 // APIs
 const express = require("express");
-const cors = require('cors')
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const swaggerUi = require("swagger-ui-express");
@@ -19,7 +19,7 @@ const port = 8080;
 app.use(bodyParser.json()); // Parse request body
 app.use(express.static(path.join(__dirname, "public"))); // TODO - Learn purpose
 
-app.use(cors()) // Enable CORS
+app.use(cors()); // Enable CORS
 
 const transactionRoutes = require("./routes/transaction");
 

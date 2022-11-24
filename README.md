@@ -66,6 +66,8 @@ docker build . -t nahwu2/expense-app-backend:0.1
 docker push nahwu2/expense-app-backend:0.1
 
 docker save nahwu2/expense-app-backend:0.1 | gzip > exported_expense_app_backend_0_1.tar.gz
+
+docker run --name expense-app-backend -p 8080:8080 -d nahwu2/expense-app-backend:0.1
 ```
 
 ### X3. Redo dependencies (package.json)

@@ -12,39 +12,14 @@ class MyTest {
     this.imageUrl = imageUrl;
   }
 
-  /*
-  writeManyTestData(writeSize) {
-    let testDataArray = [];
-
-    console.log(new Date(), " Preparing data in-memory.");
-    // create an array of documents to insert
-    for (let i = 0; i < writeSize; i++) {
-      testDataArray.push({ index: i, name: "cake", healthy: false });
-    }
-    console.log(new Date(), " Ready to insert into database.");
-
-    const mongoDb = getMongoDb();
-    return mongoDb
-      .collection("test")
-      .insertMany(testDataArray)
-      .then((result) => {
-        console.log(new Date(), writeSize, "Database insertions completed.");
-        return writeSize;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  */
-
-  static writeManyTestData2(writeSize) {
+  static writeManyTestData(writeSize) {
     let testDataArray = [];
 
     const categoryArray = ["face", "body", "vehicle", "anpr", "vmmr"];
     const payerArray = ["person1", "person2", "person3"];
     const receiverArray = ["person1", "person2", "person3"];
 
-    console.log(new Date().toISOString(), " Preparing data in-memory. 2");
+    console.log(new Date().toISOString(), "- Preparing data in-memory.");
     // create an array of documents to insert
     for (let i = 0; i < writeSize; i++) {
       testDataArray.push({
@@ -60,18 +35,19 @@ class MyTest {
         healthy: false,
       });
     }
-    console.log(new Date().toISOString(), " Ready to insert into database. 2");
+    console.log(new Date().toISOString(), "- Ready to insert into database.");
 
     const mongoDb = getMongoDb();
     return mongoDb
-      .collection("transaction")
+      //.collection("transaction")    // for read test on large amount of data
+      .collection("writetestonly")
       .insertMany(testDataArray)
       .then((result) => {
-        //console.log(result);
         console.log(
           new Date().toISOString(),
+          "-",
           writeSize,
-          "Database insertions completed. 2"
+          "Database insertions completed."
         );
         return writeSize;
       })
