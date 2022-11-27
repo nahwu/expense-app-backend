@@ -70,7 +70,7 @@ exports.getTransactionsOptionalFilters = (req, res, next) => {
   );
 };
 
-exports.getTransactionsAggCountGroupBy = (req, res, next) => {
+exports.getTransactionsAggCountGroupByCategory = (req, res, next) => {
   // Optional Date Filters
   let startDate = new Date("0000-00-00");
   let endDate = new Date("9999-12-31");
@@ -81,8 +81,27 @@ exports.getTransactionsAggCountGroupBy = (req, res, next) => {
     endDate = new Date(req.body.endDate);
   }
 
-  Transaction.getTransactionsAggCountGroupBy(
+  Transaction.getTransactionsAggCountGroupByCategory(
     req.body.item,
+    startDate,
+    endDate
+  ).then((transactions) => {
+    res.json(transactions);
+  });
+};
+
+exports.getTransactionsAggSumGroupByCategory = (req, res, next) => {
+  // Optional Date Filters
+  let startDate = new Date("0000-00-00");
+  let endDate = new Date("9999-12-31");
+  if (req.body.startDate && new Date(req.body.startDate)) {
+    startDate = new Date(req.body.startDate);
+  }
+  if (req.body.endDate && new Date(req.body.endDate)) {
+    endDate = new Date(req.body.endDate);
+  }
+
+  Transaction.getTransactionsAggSumGroupByCategory(
     startDate,
     endDate
   ).then((transactions) => {

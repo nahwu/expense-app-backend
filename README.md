@@ -7,13 +7,12 @@ This repository is meant for a Backend application for an expense tracker applic
 ## 2. Purpose
 While there are many expense trackers out there. The good ones are mostly behind a paywall. 
 
-There is also the 
-**Knowledge** of your own expenses is very crucial to our personal financial health for both the present and the future.
+`Knowledge` or `awareness` of your own expenses is very crucial to our personal financial health for both the present and the future.
 
-It only takes 20 average medium-sized spending (e.g. $50) within a month to reach 4 figure expense (>= $1000) for the month.
+For example, it only takes 20 average medium-sized spending (e.g. $50) within a month to reach 4 figure expense (>= $1000) for the month.
 It's not uncommon to know someone who spends beyond their means, especially when one suddenly have more income than before. 
 
-The goal is to begin with expense awareness and then expand to expense budgeting >> saving & networth projection >> retirement planning
+The goal of this project is to begin with `expense awareness` and then expand onwards to  `expense budgeting` >> `saving & networth projection` >> `retirement planning`
 
 
 ## 3. Supported features
@@ -22,6 +21,8 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 1. **Feature:** API for creating new transaction
 1. **Feature:** API for retrieving all transactions
 1. **Feature:** API for dynamic transaction search support (optional search filters, sort, sort direction, partial match, case sensitivity)
+1. **Feature:** API for aggregation of transactions (for descriptive analytics e.g. charts)
+    1. Summation of amount, by category. Optional date range filter
 1. **Feature:** Add support for delete Transaction API
 1. **Feature:** Allow data import from CSV file
     1. CSV import from You Need a Budget (YNAB). User need to delete following columns - Flag, Check Number, Cleared
@@ -32,7 +33,6 @@ The goal is to begin with expense awareness and then expand to expense budgeting
 
 ## 4. Development Roadmap
 1. **Feature:** Add support for edit Transaction API
-1. **Feature:** Add support for aggregation Transaction API (for descriptive analytics e.g. charts)
 1. **Feature:** Add support for list, create, edit, delete Expense Category API
 1. **Feature:** Add support for income
 1. **Feature:** Add support for list, create, edit, delete Expense Payer API
@@ -60,7 +60,12 @@ The goal is to begin with expense awareness and then expand to expense budgeting
     
     node app.js
 
-### X2. Build, push, export Docker image
+### X2. CSV file for data import.
+Name & place desired CSV file `./Register.csv` in root folder of application. 
+
+Refer to `controllers/csvImport.js` for business logic details.
+
+### X3. Build, push, export Docker image
 - Build Docker image
 
         docker build . -t nahwu2/expense-app-backend:0.1
@@ -78,7 +83,7 @@ The goal is to begin with expense awareness and then expand to expense budgeting
         docker run --name expense-app-backend -p 8080:8080 -d nahwu2/expense-app-backend:0.1
 
 
-### X3. To remove TLS support from backend server
+### X4. To remove TLS support from backend server
 Open app.js and change from
 
     const https = require("https");
@@ -105,7 +110,7 @@ to
     });
 
 
-### X4. Redo dependencies (package.json)
+### X5. Redo dependencies (package.json)
 1. (Optional) Delete package.json and package-lock.json
 2. Swagger UI Express
 

@@ -29,7 +29,7 @@ exports.addTransactionByCsv = (req, res, next) => {
         category: row[5],
         payer: row[7] > 0 ? "Nah Wu" : row[2], // If expense, then payer is "Nah Wu"
         receiver: row[8] > 0 ? "Nah Wu" : "", // If income indicated, then receiver is "Nah Wu"
-        amount: row[7] > 0 ? row[7] : row[8],
+        amount: row[7] > 0 ? +row[7] : +row[8],
         imageUrl: "",
       });
     })
